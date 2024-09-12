@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ir.rbp.common</groupId>
+    <artifactId>parent</artifactId>
+    <version>2.0.0</version>
+    <packaging>pom</packaging>
+    <description>Parent pom providing dependency and plugin management for applications built with Maven</description>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.2</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <properties>
+        <!--    General    -->
+        <java.version>21</java.version>
+        <skipTests>false</skipTests>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!--    Dependencies    -->
+        <ir.rbp.common.mvc.version>2.0.0</ir.rbp.common.mvc.version>
+        <ir.rbp.common.validation.version>2.0.0</ir.rbp.common.validation.version>
+        <ir.rbp.common.log.version>2.0.0</ir.rbp.common.log.version>
+        <ir.rbp.common.model.version>2.0.0</ir.rbp.common.model.version>
+        <ir.rbp.common.query.builder.version>2.0.0</ir.rbp.common.query.builder.version>
+        <ir.rbp.common.utils.version>2.0.0</ir.rbp.common.utils.version>
+        <ojdbc8.version>19.3</ojdbc8.version>
+        <mapstruct.version>1.6.0</mapstruct.version>
+        <org.json.version>20240303</org.json.version>
+        <docx.report.version>1.0.0-RC1</docx.report.version>
+        <persian.date.time.version>4.1.0</persian.date.time.version>
+        <jasypt-spring-boot-starter.version>3.0.5</jasypt-spring-boot-starter.version>
+        <openfeign.starter.version>4.1.3</openfeign.starter.version>
+        <jaxb.impl.version>4.0.5</jaxb.impl.version>
+        <spring-cloud-starter-oauth2.version>2.2.5.RELEASE</spring-cloud-starter-oauth2.version>
+        <spring-cloud-dependencies.version>2023.0.3</spring-cloud-dependencies.version>
+        <lombok.version>1.18.34</lombok.version>
+        <spring-doc.version>1.8.0</spring-doc.version>
+        <logstash-logback.version>8.0</logstash-logback.version>
+        <pdfbox.version>3.0.3</pdfbox.version>
+        <spring-security-oauth2.version>6.3.3</spring-security-oauth2.version>
+
+        <!--    Plugins    -->
+        <spring.boot.configuration.processor.version>3.3.3</spring.boot.configuration.processor.version>
+        <lombok.mapstruct.binding.version>0.2.0</lombok.mapstruct.binding.version>
+        <spring-boot-thin-layout.version>1.0.27.RELEASE</spring-boot-thin-layout.version>
+        <sonar-maven-plugin.version>3.4.0.905</sonar-maven-plugin.version>
+        <maven-site-plugin.version>3.7.1</maven-site-plugin.version>
+        <maven-surefire-plugin.version>3.7.1</maven-surefire-plugin.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>ir.rbp.common</groupId>
+                <artifactId>mvc</artifactId>
+                <version>${ir.rbp.common.mvc.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ir.rbp.common</groupId>
+                <artifactId>log</artifactId>
+                <version>${ir.rbp.common.log.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ir.rbp.common</groupId>
+                <artifactId>utils</artifactId>
+                <version>${ir.rbp.common.utils.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ir.rbp.common</groupId>
+                <artifactId>model</artifactId>
+                <version>${ir.rbp.common.model.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ir.rbp.common</groupId>
+                <artifactId>validation</artifactId>
+                <version>${ir.rbp.common.validation.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ir.rbp.common</groupId>
+                <artifactId>query-builder</artifactId>
+                <version>${ir.rbp.common.query.builder.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.oracle</groupId>
+                <artifactId>ojdbc8</artifactId>
+                <version>${ojdbc8.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.json</groupId>
+                <artifactId>json</artifactId>
+                <version>${org.json.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ir.bahman</groupId>
+                <artifactId>docx-report</artifactId>
+                <version>${docx.report.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>ch.qos.logback</groupId>
+                        <artifactId>logback-classic</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-simple</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.mfathi91</groupId>
+                <artifactId>persian-date-time</artifactId>
+                <version>${persian.date.time.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.ulisesbocchio</groupId>
+                <artifactId>jasypt-spring-boot-starter</artifactId>
+                <version>${jasypt-spring-boot-starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>${openfeign.starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.sun.xml.bind</groupId>
+                <artifactId>jaxb-impl</artifactId>
+                <version>${jaxb.impl.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-oauth2</artifactId>
+                <version>${spring-cloud-starter-oauth2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.bahman</groupId>
+                <artifactId>security-policy-check</artifactId>
+                <version>${rbp.security-policy-check.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${spring-doc.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-webmvc-core</artifactId>
+                <version>${spring-doc.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-security</artifactId>
+                <version>${spring-doc.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logstash-logback.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.pdfbox</groupId>
+                <artifactId>pdfbox</artifactId>
+                <version>${pdfbox.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-oauth2-client</artifactId>
+                <version>${spring-security-oauth2.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <dependencies>
+                        <!-- The following enables the "thin jar" deployment option. -->
+                        <dependency>
+                            <groupId>org.springframework.boot.experimental</groupId>
+                            <artifactId>spring-boot-thin-layout</artifactId>
+                            <version>${spring-boot-thin-layout.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <release>${java.version}</release>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.springframework.boot</groupId>
+                                <artifactId>spring-boot-configuration-processor</artifactId>
+                                <version>${spring.boot.configuration.processor.version}</version>
+                            </path>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${lombok.version}</version>
+                            </path>
+                            <!-- This is needed when using Lombok 1.18.16 and above -->
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok-mapstruct-binding</artifactId>
+                                <version>${lombok.mapstruct.binding.version}</version>
+                            </path>
+                            <path>
+                                <groupId>org.mapstruct</groupId>
+                                <artifactId>mapstruct-processor</artifactId>
+                                <version>${mapstruct.version}</version>
+                            </path>
+                        </annotationProcessorPaths>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>${sonar-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${maven-site-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.2.5</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>3.3.0</version>
+                    <configuration>
+                        <argLine>-XX:+EnableDynamicAgentLoading</argLine>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>3.4.1</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
+
