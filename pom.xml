@@ -4,16 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ir.rbp.common</groupId>
+    <groupId>ir.hamapp.commons</groupId>
     <artifactId>parent</artifactId>
-    <version>2.0.0</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
     <description>Parent pom providing dependency and plugin management for applications built with Maven</description>
+
+    <modules>
+        <module>utils</module>
+        <module>validation</module>
+    </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.2</version>
+        <version>3.4.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -26,23 +31,20 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!--    Dependencies    -->
-        <ir.rbp.common.mvc.version>2.0.0</ir.rbp.common.mvc.version>
-        <ir.rbp.common.validation.version>2.0.0</ir.rbp.common.validation.version>
-        <ir.rbp.common.log.version>2.0.0</ir.rbp.common.log.version>
-        <ir.rbp.common.model.version>2.0.0</ir.rbp.common.model.version>
-        <ir.rbp.common.query.builder.version>2.0.0</ir.rbp.common.query.builder.version>
-        <ir.rbp.common.utils.version>2.0.0</ir.rbp.common.utils.version>
+        <commons.validation.version>1.0.0</commons.validation.version>
+        <commons.utils.version>1.1.0</commons.utils.version>
+
         <ojdbc8.version>19.3</ojdbc8.version>
         <mapstruct.version>1.6.0</mapstruct.version>
         <org.json.version>20240303</org.json.version>
         <docx.report.version>1.0.0-RC1</docx.report.version>
-        <persian.date.time.version>4.1.0</persian.date.time.version>
+        <persian.date.time.version>4.2.1</persian.date.time.version>
         <jasypt-spring-boot-starter.version>3.0.5</jasypt-spring-boot-starter.version>
         <openfeign.starter.version>4.1.3</openfeign.starter.version>
         <jaxb.impl.version>4.0.5</jaxb.impl.version>
         <spring-cloud-starter-oauth2.version>2.2.5.RELEASE</spring-cloud-starter-oauth2.version>
         <spring-cloud-dependencies.version>2023.0.3</spring-cloud-dependencies.version>
-        <lombok.version>1.18.34</lombok.version>
+        <lombok.version>1.18.36</lombok.version>
         <spring-doc.version>1.8.0</spring-doc.version>
         <logstash-logback.version>8.0</logstash-logback.version>
         <pdfbox.version>3.0.3</pdfbox.version>
@@ -60,39 +62,25 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>ir.rbp.common</groupId>
-                <artifactId>mvc</artifactId>
-                <version>${ir.rbp.common.mvc.version}</version>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
             </dependency>
 
             <dependency>
-                <groupId>ir.rbp.common</groupId>
-                <artifactId>log</artifactId>
-                <version>${ir.rbp.common.log.version}</version>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
             </dependency>
 
             <dependency>
-                <groupId>ir.rbp.common</groupId>
+                <groupId>ir.hamapp.commons</groupId>
                 <artifactId>utils</artifactId>
-                <version>${ir.rbp.common.utils.version}</version>
+                <version>${commons.utils.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>ir.rbp.common</groupId>
-                <artifactId>model</artifactId>
-                <version>${ir.rbp.common.model.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>ir.rbp.common</groupId>
+                <groupId>ir.hamapp.commons</groupId>
                 <artifactId>validation</artifactId>
-                <version>${ir.rbp.common.validation.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>ir.rbp.common</groupId>
-                <artifactId>query-builder</artifactId>
-                <version>${ir.rbp.common.query.builder.version}</version>
+                <version>${commons.validation.version}</version>
             </dependency>
 
             <dependency>
@@ -130,9 +118,9 @@
             </dependency>
 
             <dependency>
-                <groupId>com.github.mfathi91</groupId>
+                <groupId>ir.hamapp.commons</groupId>
                 <artifactId>persian-date-time</artifactId>
-                <version>${persian.date.time.version}</version>
+                <version>1.0.0</version>
             </dependency>
 
             <dependency>
@@ -224,14 +212,6 @@
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <dependencies>
-                        <!-- The following enables the "thin jar" deployment option. -->
-                        <dependency>
-                            <groupId>org.springframework.boot.experimental</groupId>
-                            <artifactId>spring-boot-thin-layout</artifactId>
-                            <version>${spring-boot-thin-layout.version}</version>
-                        </dependency>
-                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
