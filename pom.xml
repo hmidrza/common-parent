@@ -6,7 +6,7 @@
 
     <groupId>ir.hamapp.commons</groupId>
     <artifactId>parent</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>pom</packaging>
     <description>Parent pom providing dependency and plugin management for applications built with Maven</description>
 
@@ -45,7 +45,6 @@
         <spring-cloud-starter-oauth2.version>2.2.5.RELEASE</spring-cloud-starter-oauth2.version>
         <spring-cloud-dependencies.version>2023.0.3</spring-cloud-dependencies.version>
         <lombok.version>1.18.36</lombok.version>
-        <spring-doc.version>1.8.0</spring-doc.version>
         <logstash-logback.version>8.0</logstash-logback.version>
         <pdfbox.version>3.0.3</pdfbox.version>
         <spring-security-oauth2.version>6.3.3</spring-security-oauth2.version>
@@ -165,24 +164,6 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-ui</artifactId>
-                <version>${spring-doc.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-webmvc-core</artifactId>
-                <version>${spring-doc.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-security</artifactId>
-                <version>${spring-doc.version}</version>
             </dependency>
 
             <dependency>
